@@ -12,14 +12,88 @@ class MainModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (AppCubit.get(context).selected == 1) {
+          AppCubit.get(context).productsBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                AppCubit.get(context).homeBarFunc();
+              },
+              child: Image.asset(
+                'assets/icons/home.png',
+                height: 30,
+                width: 30,
+              ),
+            ),
+          );
+        } else {
+          AppCubit.get(context).productsBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/icons/electronics.png',
+              height: 30,
+              width: 30,
+              color: Colors.white,
+            ),
+          );
+        }
+        if (AppCubit.get(context).selected == 2) {
+          AppCubit.get(context).cartBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                AppCubit.get(context).homeBarFunc();
+              },
+              child: Image.asset(
+                'assets/icons/home.png',
+                height: 30,
+                width: 30,
+              ),
+            ),
+          );
+        } else {
+          AppCubit.get(context).cartBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/icons/cart.png',
+              height: 30,
+              width: 30,
+              color: Colors.white,
+            ),
+          );
+        }
+        if (AppCubit.get(context).selected == 3) {
+          AppCubit.get(context).settingsBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                AppCubit.get(context).homeBarFunc();
+              },
+              child: Image.asset(
+                'assets/icons/home.png',
+                height: 30,
+                width: 30,
+              ),
+            ),
+          );
+        } else {
+          AppCubit.get(context).settingsBar = Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/icons/settings_Icon.png',
+              height: 30,
+              width: 30,
+              color: Colors.white,
+            ),
+          );
+        }
       },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: HexColor('#242C3B'),
           body: Stack(
             children: [
-              const HomeScreen(),
+              AppCubit.get(context).screen, 
               Align(
                   alignment: Alignment.bottomCenter,
                   child: bnb(
@@ -76,61 +150,33 @@ class MainModule extends StatelessWidget {
                           ),
                           21.w,
                           InkWell(
-                            onTap: ()
-                            {
-                              AppCubit.get(context).selected = 1;
-                              AppCubit.get(context).changeScreen();
+                            onTap: () {
+                              AppCubit.get(context).productsBarFunc();
                             },
                             child: bubbleButton(
                                 h: 50,
                                 w: 50,
-                                widget: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    'assets/icons/electronics.png',
-                                    height: 30,
-                                    width: 30,
-                                    color: Colors.white,
-                                  ),
-                                )),
+                                widget: AppCubit.get(context).productsBar),
                           ),
                           10.w,
                           InkWell(
-                            onTap: ()
-                            {
-                               AppCubit.get(context).selected = 2;
+                            onTap: () {
+                              AppCubit.get(context).cartBarFunc();
                             },
                             child: bubbleButton(
                                 h: 50,
                                 w: 50,
-                                widget: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    'assets/icons/cart.png',
-                                    height: 30,
-                                    width: 30,
-                                    color: Colors.white,
-                                  ),
-                                )),
+                                widget: AppCubit.get(context).cartBar),
                           ),
                           10.w,
                           InkWell(
-                            onTap: ()
-                            {
-                               AppCubit.get(context).selected = 3;
+                            onTap: () {
+                              AppCubit.get(context).settingsBarFunc();
                             },
                             child: bubbleButton(
                                 h: 50,
                                 w: 50,
-                                widget: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    'assets/icons/electronics.png',
-                                    height: 30,
-                                    width: 30,
-                                    color: Colors.white,
-                                  ),
-                                )),
+                                widget: AppCubit.get(context).settingsBar),
                           ),
                         ],
                       ))),
