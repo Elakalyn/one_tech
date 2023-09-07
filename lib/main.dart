@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:one_tech/Modules/Home/home.dart';
 import 'package:one_tech/Modules/MainModule/mainModule.dart';
 import 'package:one_tech/cubit/app_cubit.dart';
 

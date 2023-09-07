@@ -1,4 +1,5 @@
-import 'package:bloc/bloc.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_tech/Modules/Cart/cart.dart';
@@ -14,7 +15,7 @@ class AppCubit extends Cubit<AppState> {
 
   // BOTTOM NAVIGATION BAR 
   var selected;
-  dynamic screen = HomeScreen();
+  dynamic screen = const HomeScreen();
   var bnbImage = Image.asset(
     'assets/icons/home.png',
     height: 40,
@@ -30,7 +31,7 @@ class AppCubit extends Cubit<AppState> {
         width: 30,
       );
       bnbName = 'Products';
-      screen = ProductsScreen();
+      screen = const ProductsScreen();
     } else if (selected == 2) {
       bnbImage = Image.asset(
         'assets/icons/cart.png',
@@ -39,7 +40,7 @@ class AppCubit extends Cubit<AppState> {
         width: 40,
       );
       bnbName = 'Cart';
-            screen = CartScreen();
+            screen = const CartScreen();
     } else if (selected == 3) {
       bnbImage = Image.asset(
         'assets/icons/settings_Icon.png',
@@ -48,7 +49,7 @@ class AppCubit extends Cubit<AppState> {
         width: 40,
       );
       bnbName = 'Settings';
-      screen = SettingsScreen();
+      screen = const SettingsScreen();
     }
     emit(BNBChangeState());
   }
@@ -96,7 +97,7 @@ class AppCubit extends Cubit<AppState> {
       width: 40,
     );
     bnbName = 'Home';
-    screen = HomeScreen();
+    screen = const HomeScreen();
     changeScreen();
   }
 
