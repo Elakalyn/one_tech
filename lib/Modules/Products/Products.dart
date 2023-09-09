@@ -1,36 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:one_tech/Shared/Components/components.dart';
-import 'package:path/path.dart';
 import 'package:speed_up_flutter/speed_up_flutter.dart';
 
+import '../../cubit/app_cubit.dart';
 import '../ProductDetails/productDetails.dart';
 
 TextStyle catStyle = TextStyle(
     color: HexColor('#979797'), fontSize: 14, fontWeight: FontWeight.w500);
-
-List<Widget> categs = [
-  Text(
-    'All',
-    style: catStyle,
-  ),
-  Text(
-    'Phones',
-    style: catStyle,
-  ),
-  Text(
-    'Laptops',
-    style: catStyle,
-  ),
-  Text(
-    'PCs',
-    style: catStyle,
-  ),
-  Text(
-    'Keyboards',
-    style: catStyle,
-  ),
-];
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -163,7 +140,8 @@ class ProductsScreen extends StatelessWidget {
                 child: ListView.separated(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => categs[index],
+                  itemBuilder: (context, index) =>
+                      AppCubit.get(context).categs[index],
                   separatorBuilder: (context, index) => 20.w,
                   itemCount: 5,
                 ),

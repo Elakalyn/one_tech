@@ -67,11 +67,11 @@ class AccountScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: TextFormField(
-              initialValue: '01001374047',
+              initialValue: '(555) 555-1234',
               style: const TextStyle(color: Color(0xFFA8A8A8), fontSize: 23),
               decoration: InputDecoration(
                   suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: CircleAvatar(
                       radius: 17.5,
                       backgroundColor: HexColor('#3D95EB'),
@@ -97,7 +97,7 @@ class AccountScreen extends StatelessWidget {
               style: const TextStyle(color: Color(0xFFA8A8A8), fontSize: 23),
               decoration: InputDecoration(
                   suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: CircleAvatar(
                       radius: 17.5,
                       backgroundColor: HexColor('#3D95EB'),

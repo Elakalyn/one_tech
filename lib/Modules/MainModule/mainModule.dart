@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -5,7 +7,10 @@ import 'package:one_tech/Shared/Components/components.dart';
 import 'package:one_tech/cubit/app_cubit.dart';
 import 'package:speed_up_flutter/speed_up_flutter.dart';
 
+import '../Search/Search.dart';
 import '../Settings/Account/account.dart';
+
+var displayLocations = false;
 
 class MainModule extends StatelessWidget {
   const MainModule({super.key});
@@ -192,17 +197,23 @@ class MainModule extends StatelessWidget {
                     padding: const EdgeInsets.all(17.0),
                     child: Row(
                       children: [
-                        bubbleButton(
-                          w: 118,
-                          h: 50,
-                          widget: const Column(children: [
-                            Expanded(
-                                child: Icon(Icons.location_on,
-                                    color: Colors.white)),
-                            Expanded(
-                                child: Text('Helwan, Cairo',
-                                    style: TextStyle(color: Colors.white)))
-                          ]),
+                        InkWell(
+                          onTap: () {
+                            displayLocations = true;
+                            AppCubit.get(context).changeScreen();
+                          },
+                          child: bubbleButton(
+                            w: 118,
+                            h: 50,
+                            widget: Column(children: const [
+                              Expanded(
+                                  child: Icon(Icons.location_on,
+                                      color: Colors.white)),
+                              Expanded(
+                                  child: Text('Wadsworth, Ohio',
+                                      style: TextStyle(color: Colors.white)))
+                            ]),
+                          ),
                         ),
                         const Spacer(),
                         bubbleButton(
@@ -215,7 +226,8 @@ class MainModule extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const AccountScreen()),
+                                        builder: (context) =>
+                                            const AccountScreen()),
                                   );
                                 },
                                 child: Image.asset(
@@ -228,10 +240,56 @@ class MainModule extends StatelessWidget {
                         bubbleButton(
                           w: 50,
                           h: 50,
-                          widget:
-                              const Icon(Icons.search, color: Colors.white, size: 30),
+                          widget: InkWell(
+                              onTap: () {
+                                navigateTo(context, const Search());
+                              },
+                              child: const Icon(Icons.search,
+                                  color: Colors.white, size: 30)),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: displayLocations,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: bubbleButton(
+                      h: 375,
+                      w: 275,
+                      widget: Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Choose delivery location',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                )),
+                            Spacer(),
+                            InkWell(
+                              onTap: () {
+                                displayLocations = false;
+                                AppCubit.get(context).changeScreen();
+                              },
+                              child: SizedBox(
+                                height: 300,
+                                width: 250,
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) =>
+                                      AppCubit.get(context).locations[index],
+                                  separatorBuilder: (context, index) => 10.h,
+                                  itemCount: 9,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

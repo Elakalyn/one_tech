@@ -5,3 +5,4 @@ sealed class AppState {}
 
 final class AppInitial extends AppState {}
 final class BNBChangeState extends AppState {}
+final class ProductViewState extends AppState {}
